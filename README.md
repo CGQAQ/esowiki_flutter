@@ -1,6 +1,6 @@
 # esomap_mobile
-
-A new Flutter project.
+[esomap](https://github.com/justjavac/esomap) for various platforms
+powered by [eso-api](https://github.com/justjavac/eso-api)
 
 ## Getting Started
 
