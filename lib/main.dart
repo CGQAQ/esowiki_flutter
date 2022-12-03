@@ -12,8 +12,14 @@ void main() {
       Platform.isFuchsia ||
       Platform.isWindows ||
       Platform.isLinux) {
+    if (kDebugMode) {
+      print("Running Material App");
+    }
     runMaterialApp();
   } else if (Platform.isMacOS || Platform.isIOS) {
+    if (kDebugMode) {
+      print("Running Cupertino App");
+    }
     runCupertinoApp();
   } else {
     throw UnsupportedError('Unsupported platform');
