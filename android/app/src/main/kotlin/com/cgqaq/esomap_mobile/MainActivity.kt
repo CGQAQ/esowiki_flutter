@@ -1,4 +1,4 @@
-package com.example.esomap_mobile
+package com.cgqaq.esomap_mobile
 
 import io.flutter.embedding.android.FlutterActivity
 
