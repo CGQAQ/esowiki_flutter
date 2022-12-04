@@ -5,10 +5,13 @@ import 'package:json_annotation/json_annotation.dart';
 
 part "summaries.g.dart";
 
-Future<SummariesResponse> getSummaries(
-    {int pageCurrent = 0, int pageSize = 10}) async {
+Future<SummariesResponse> getSummaries({
+  int pageCurrent = 0,
+  int pageSize = 20,
+  String keyword = "",
+}) async {
   String url =
-      "https://esoapi.denohub.com/api/set-summaries?pagination[page]=$pageCurrent&pagination[pageSize]=$pageSize";
+      "https://esoapi.denohub.com/api/set-summaries?pagination[page]=$pageCurrent&pagination[pageSize]=$pageSize&filters[name][\$containsi]=$keyword";
 
   var resp =
       await http.get(Uri.parse(url)).then((value) => jsonDecode(value.body));
