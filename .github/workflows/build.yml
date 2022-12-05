@@ -13,6 +13,10 @@ jobs:
       - name: install flutter
         run: |
           sudo snap install flutter --classic
+          
+      - name: install deps
+        run: |
+          flutter pub get
           chmod +x ./gen.sh
           ./gen.sh
           
