@@ -13,6 +13,6 @@ jobs:
       - uses: britannio/action-install-flutter@v1.1
         with:
           version: stable
-      - shell: | 
+      - run: | 
           flutter doctor
           flutter build -h
