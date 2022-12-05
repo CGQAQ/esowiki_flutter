@@ -6,13 +6,23 @@ on:
 
 jobs:
   build:
-    name: build(windows)
-    runs-on: windows-latest
+    name: build(linux, android)
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3.1.0
-      - uses: britannio/action-install-flutter@v1.1
         with:
           version: stable
-      - run: | 
-          flutter doctor
-          flutter build -h
+      - name: install dependencies
+        uses: geowatson/flutter-latest@1.0.0
+        with:
+          args: pub get
+          
+      - name: build linux
+        uses: geowatson/flutter-latest@1.0.0
+        with:
+          args: build linux --release
+          
+      - name: build apk
+        uses: geowatson/flutter-latest@1.0.0
+        with:
+          args: build apk --release
