@@ -10,11 +10,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3.1.0
-        with:
-          version: stable
       - name: install flutter
         run: |
-          snap install flutter --classic
+          sudo snap install flutter --classic
           
       - name: build linux
         run: |
