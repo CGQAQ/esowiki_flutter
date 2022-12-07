@@ -87,6 +87,12 @@ class SummariesDataAttr {
   String updatedAt;
   //         "publishedAt": "2022-12-02T06:55:12.977Z"
   String publishedAt;
+  // "nameEn": "Claw of the Forest Wraith",
+  String nameEn;
+  // "slug": "claw-of-the-forest-wraith",
+  String slug;
+  // "icon": "https://esoicons.uesp.net/esoui/art/icons/gear_breton_light_head_d.png"
+  String? icon;
 
   SummariesDataAttr(
       {required this.name,
@@ -105,7 +111,10 @@ class SummariesDataAttr {
       required this.itemSlots,
       required this.createdAt,
       required this.updatedAt,
-      required this.publishedAt});
+      required this.publishedAt,
+      required this.nameEn,
+      required this.slug,
+      this.icon});
 
   factory SummariesDataAttr.fromJson(Map<String, dynamic> json) =>
       _$SummariesDataAttrFromJson(json);
@@ -148,7 +157,10 @@ class SummariesResponse {
   //         "createdAt": "2022-12-02T06:55:12.980Z",
   //         "updatedAt": "2022-12-02T08:32:54.088Z",
   //         "publishedAt": "2022-12-02T06:55:12.977Z"
-  //     }
+  //         "nameEn": "Claw of the Forest Wraith",
+  //         "slug": "claw-of-the-forest-wraith",
+  //         "icon": "https://esoicons.uesp.net/esoui/art/icons/gear_breton_light_head_d.png"
+  //    }
   // },
   List<SummariesData> data;
 

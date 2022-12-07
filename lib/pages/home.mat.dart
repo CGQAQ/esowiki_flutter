@@ -12,6 +12,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final controller = ScrollController();
+  final searchController = TextEditingController();
 
   var summaries = <SummariesData>[];
 
@@ -76,11 +77,7 @@ class _HomePageState extends State<HomePage> {
                 children: [
                   Flexible(
                     child: TextField(
-                      onChanged: (value) {
-                        setState(() {
-                          keyword = value;
-                        });
-                      },
+                      controller: searchController,
                     ),
                   ),
                   IconButton(
@@ -88,10 +85,11 @@ class _HomePageState extends State<HomePage> {
                     onPressed: () {
                       setState(() {
                         isSearching = true;
-                      });
-                      refresh(reset: true).then((_) {
-                        setState(() {
-                          isSearching = false;
+                        keyword = searchController.text;
+                        refresh(reset: true).then((_) {
+                          setState(() {
+                            isSearching = false;
+                          });
                         });
                       });
                     },
@@ -133,8 +131,20 @@ class _HomePageState extends State<HomePage> {
 
                 return ListTile(
                   title: Text(summary.attributes.name),
-                  subtitle: Text(summary.attributes.type),
-                  trailing: Text("${summary.attributes.itemCount}"),
+                  subtitle: Text(summary.attributes.nameEn),
+                  leading: summary.attributes.icon != null
+                      ? Image.network(
+                          summary.attributes.icon!,
+                          width: 40,
+                          height: 40,
+                          fit: BoxFit.fill,
+                        )
+                      : const SizedBox(
+                          width: 40,
+                          height: 40,
+                          child: Icon(Icons.broken_image_outlined),
+                        ),
+                  trailing: Text(summary.attributes.type),
                   onTap: () {
                     showBottomSheet(
                       context: context,
@@ -142,8 +152,8 @@ class _HomePageState extends State<HomePage> {
                         return SizedBox(
                           height: 400,
                           width: double.infinity,
-                          child: Container(
-                            color: Colors.blueGrey[100],
+                          child: Card(
+                            color: const ColorScheme.light().onPrimary,
                             child: Column(
                               children: [
                                 Padding(
@@ -199,6 +209,14 @@ class ItemDetails extends StatelessWidget {
         InfoRow(
           name: "名称",
           value: summary.attributes.name,
+        ),
+        InfoRow(
+          name: "英文名称",
+          value: summary.attributes.nameEn,
+        ),
+        InfoRow(
+          name: "SLUG",
+          value: summary.attributes.slug,
         ),
         InfoRow(
           name: "类型",
@@ -269,22 +287,33 @@ class InfoRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
+    return Column(
       children: [
-        Text("$name："),
-        Flexible(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(
-              vertical: 5,
-            ),
-            child: Text(
-              value,
-              style: const TextStyle(
-                fontWeight: FontWeight.bold,
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            SizedBox(
+              width: 120,
+              child: Text(
+                "$name：",
               ),
             ),
-          ),
+            Flexible(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(
+                  vertical: 5,
+                ),
+                child: Text(
+                  value,
+                  style: const TextStyle(
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+            ),
+          ],
         ),
+        const Divider(),
       ],
     );
   }
