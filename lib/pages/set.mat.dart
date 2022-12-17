@@ -1,16 +1,16 @@
 import 'package:esomap_mobile/api/summaries.dart';
 import 'package:flutter/material.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+class SetPage extends StatefulWidget {
+  const SetPage({super.key});
 
   @override
   State<StatefulWidget> createState() {
-    return _HomePageState();
+    return _SetPageState();
   }
 }
 
-class _HomePageState extends State<HomePage> {
+class _SetPageState extends State<SetPage> {
   final controller = ScrollController();
   final searchController = TextEditingController();
 
@@ -25,6 +25,8 @@ class _HomePageState extends State<HomePage> {
   var keyword = "";
 
   var isSearching = false;
+
+  PersistentBottomSheetController? bottomSheet;
 
   @override
   void initState() {
@@ -63,9 +65,6 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('EsoMap Mobile'),
-      ),
       body: Column(
         children: [
           SizedBox(
@@ -146,7 +145,7 @@ class _HomePageState extends State<HomePage> {
                         ),
                   trailing: Text(summary.attributes.type),
                   onTap: () {
-                    showBottomSheet(
+                    bottomSheet = showBottomSheet(
                       context: context,
                       builder: (context) {
                         return SizedBox(
