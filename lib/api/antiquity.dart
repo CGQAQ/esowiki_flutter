@@ -3,6 +3,8 @@ import 'dart:convert';
 import "package:http/http.dart" as http;
 import 'package:json_annotation/json_annotation.dart';
 
+import 'consts.dart';
+
 part "antiquity.g.dart";
 
 Future<AntiquitiesResponse> getAntiquities({
@@ -11,7 +13,7 @@ Future<AntiquitiesResponse> getAntiquities({
   String keyword = "",
 }) async {
   String url =
-      "https://esoapi.denohub.com/api/antiquity-leads?pagination[page]=$pageCurrent&pagination[pageSize]=$pageSize&filters[name][\$containsi]=$keyword";
+      "$API_PREFIX/antiquity-leads?pagination[page]=$pageCurrent&pagination[pageSize]=$pageSize&filters[name][\$containsi]=$keyword";
 
   final resp =
       await http.get(Uri.parse(url)).then((value) => jsonDecode(value.body));

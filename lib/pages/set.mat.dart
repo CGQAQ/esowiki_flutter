@@ -243,31 +243,31 @@ class ItemDetails extends StatelessWidget {
         ),
         InfoRow(
           name: '套装效果(1)',
-          value: summary.attributes.setBonusDesc1,
+          value: summary.attributes.setBonusDesc1 ?? "<空>",
         ),
         InfoRow(
           name: '套装效果(2)',
-          value: summary.attributes.setBonusDesc2,
+          value: summary.attributes.setBonusDesc2 ?? "<空>",
         ),
         InfoRow(
           name: '套装效果(3)',
-          value: summary.attributes.setBonusDesc3,
+          value: summary.attributes.setBonusDesc3 ?? "<空>",
         ),
         InfoRow(
           name: '套装效果(4)',
-          value: summary.attributes.setBonusDesc4,
+          value: summary.attributes.setBonusDesc4 ?? "<空>",
         ),
         InfoRow(
           name: '套装效果(5)',
-          value: summary.attributes.setBonusDesc5,
+          value: summary.attributes.setBonusDesc5 ?? "<空>",
         ),
         InfoRow(
           name: '套装效果(6)',
-          value: summary.attributes.setBonusDesc6,
+          value: summary.attributes.setBonusDesc6 ?? "<空>",
         ),
         InfoRow(
           name: '套装效果(7)',
-          value: summary.attributes.setBonusDesc7,
+          value: summary.attributes.setBonusDesc7 ?? "<空>",
         ),
       ],
     );

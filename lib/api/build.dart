@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:esomap_mobile/api/consts.dart';
 import "package:http/http.dart" as http;
 import 'package:json_annotation/json_annotation.dart';
 
@@ -12,7 +13,7 @@ Future<BuildsResponse> getBuilds({
   int? id = null,
 }) async {
   String url =
-      "https://esoapi.denohub.com/api/builds?pagination[page]=$pageCurrent&pagination[pageSize]=$pageSize&filters[title][\$containsi]=$keyword";
+      "$API_PREFIX/builds?pagination[page]=$pageCurrent&pagination[pageSize]=$pageSize&filters[title][\$containsi]=$keyword";
 
   url += id != null ? "&filters[id][\$eq]=$id" : "";
 

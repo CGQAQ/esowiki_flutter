@@ -23,8 +23,8 @@ class BuildDetailPage extends StatelessWidget {
                 appBar: AppBar(
                   title: Text(build.data[0].attrs.title),
                   leading: IconButton(
-                    icon: Icon(Icons.arrow_back),
-                    onPressed: () => context.replace("/builds"),
+                    icon: const Icon(Icons.arrow_back),
+                    onPressed: () => context.pushReplacement("/builds"),
                   ),
                 ),
                 body: Padding(

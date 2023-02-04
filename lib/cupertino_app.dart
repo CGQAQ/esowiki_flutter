@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:esomap_mobile/pages/home.cup.dart';
+import 'package:esomap_mobile/pages/set.cup.dart';
 
 class App extends StatelessWidget {
   const App({super.key});

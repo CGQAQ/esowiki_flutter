@@ -1,8 +1,10 @@
 import 'package:esomap_mobile/pages/antiquity.mat.dart';
 import 'package:esomap_mobile/pages/build.mat.dart';
 import 'package:esomap_mobile/pages/build_detail.dart';
+import 'package:esomap_mobile/pages/home.dart';
 import 'package:esomap_mobile/pages/set.mat.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
 
 class App extends StatefulWidget {
@@ -11,8 +13,6 @@ class App extends StatefulWidget {
   @override
   State<App> createState() => _AppState();
 }
-
-final GlobalKey<NavigatorState> _rootNavigatorKey = GlobalKey<NavigatorState>();
 
 class RouteMeta {
   final String name;
@@ -29,6 +29,12 @@ class RouteMeta {
 }
 
 final _routesMeta = <RouteMeta>[
+  RouteMeta(
+    name: "主页",
+    path: "/home",
+    icon: Icons.home_rounded,
+    widget: (_) => const HomePage(),
+  ),
   RouteMeta(
     name: "套装",
     path: "/set",
@@ -52,11 +58,11 @@ final _routesMeta = <RouteMeta>[
       path: "/build/:id",
       widget: (state) {
         return BuildDetailPage(
-            id: int.parse(state.params["id"] as String) ?? 0);
+            id: int.parse(state.params["id"] as String));
       }),
 ];
 
-final _routes = GoRouter(initialLocation: "/set", routes: [
+final _routes = GoRouter(initialLocation: "/home", routes: [
   ShellRoute(
       builder: (context, state, child) {
         return AppRoot(
@@ -99,9 +105,17 @@ class _AppRootState extends State<AppRoot> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: const Text("ESO Wiki Mobile"),
+        systemOverlayStyle: const SystemUiOverlayStyle(
+          statusBarColor: Colors.transparent,
+          statusBarIconBrightness: Brightness.dark,
+        ),
+      ),
       body: SafeArea(child: widget.child),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _currentIndex,
+        backgroundColor: BottomNavigationBarTheme.of(context).backgroundColor,
         onTap: (index) {
           setState(() {
             _currentIndex = index;
@@ -128,6 +142,16 @@ class _AppState extends State<App> {
       title: "Eso Mobile",
       debugShowCheckedModeBanner: false,
       routerConfig: _routes,
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+        visualDensity: VisualDensity.adaptivePlatformDensity,
+        bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+          backgroundColor: Colors.white,
+          selectedItemColor: Colors.blue,
+          unselectedItemColor: Colors.grey,
+          showUnselectedLabels: true,
+        ),
+      )
     );
   }
 }

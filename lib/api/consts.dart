@@ -1,0 +1,1 @@
+const String API_PREFIX = "https://esoapi.denohub.com/api";

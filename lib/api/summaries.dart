@@ -3,6 +3,8 @@ import 'dart:convert';
 import "package:http/http.dart" as http;
 import 'package:json_annotation/json_annotation.dart';
 
+import 'consts.dart';
+
 part "summaries.g.dart";
 
 Future<SummariesResponse> getSummaries({
@@ -11,7 +13,7 @@ Future<SummariesResponse> getSummaries({
   String keyword = "",
 }) async {
   String url =
-      "https://esoapi.denohub.com/api/set-summaries?pagination[page]=$pageCurrent&pagination[pageSize]=$pageSize&filters[name][\$containsi]=$keyword";
+      "$API_PREFIX/set-summaries?pagination[page]=$pageCurrent&pagination[pageSize]=$pageSize&filters[name][\$containsi]=$keyword";
 
   var resp =
       await http.get(Uri.parse(url)).then((value) => jsonDecode(value.body));
@@ -66,19 +68,19 @@ class SummariesDataAttr {
   //         "gameId": 385,
   int gameId;
   //         "setBonusDesc1": "（2件）增加34-1487盔甲",
-  String setBonusDesc1;
+  String? setBonusDesc1;
   //         "setBonusDesc2": "（3件）增加34-1487盔甲",
-  String setBonusDesc2;
+  String? setBonusDesc2;
   //         "setBonusDesc3": "（4件）增加28-1206生命上限",
-  String setBonusDesc3;
+  String? setBonusDesc3;
   //         "setBonusDesc4": "（5件）始终获得高级疾驰与高级迅敏，移动速度与骑乘速度提高30%。",
-  String setBonusDesc4;
+  String? setBonusDesc4;
   //         "setBonusDesc5": "",
-  String setBonusDesc5;
+  String? setBonusDesc5;
   //         "setBonusDesc6": "",
-  String setBonusDesc6;
+  String? setBonusDesc6;
   //         "setBonusDesc7": "",
-  String setBonusDesc7;
+  String? setBonusDesc7;
   //         "itemSlots": "Neck Ring Medium(All)光(All)重型(All) Shield Weapons(All)",
   String itemSlots;
   //         "createdAt": "2022-12-02T06:55:12.980Z",
